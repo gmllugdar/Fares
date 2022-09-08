@@ -1,21 +1,33 @@
-.header{
+#body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    font-size: 14px !important;
+}
+
+.encabezado{
+    text-align: center;
+    font-size: 46px;
     background-color: blue;
 }
 
-.nav{
-    background-color: red;
+.navigation{
+    font-size: 12px;
+    background-color: blue;
 }
 
-.aside{
-    background-color: blueviolet;
+.content{
+    font-size: 14px;
+}
+
+.sidebar{
+    font-size: 10px;
+    background-color:magenta;
 }
 
 .footer{
-    background-color: yellow;
-    width: 100px;
+    text-align: center;
+    font-size: 10px;
+    background-color: magenta;
+   
+
 }
 
-body{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 14px;
-}
