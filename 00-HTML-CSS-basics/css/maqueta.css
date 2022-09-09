@@ -1,0 +1,36 @@
+.container{
+    padding: 30px 80px;
+    
+}
+.row{
+    display: flex;
+    padding: 20px;
+}
+
+.col1{
+    
+    width: 16.66%;
+}
+.col2{
+    width: 33.33%;
+}
+
+.col3{
+    width: 50%;
+}
+figcaption{
+    display: none;
+
+}
+
+.img-container:hover figcaption{
+    display: block;
+    position:absolute;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff96;
+}   
+
+.img-container{
+    position: relative;
+}
