@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+<body>
+    <section id="text">
+        Hello World
+         
+    </section>
+    <button onclick=api()>button</button>
+    <script>
+        const section = document.querySelector("#text");
+
+        document.addEventListener("DOMContentLoaded", function (){
+         fadeIn(section)
+        })
+        function fadeIn(el) {
+  el.style.opacity = 0;
+ 
+  (function fade() {
+    let val = parseFloat(el.style.opacity);
+    if (!((val += 0.005) > 1)) { 
+      el.style.opacity = val;   
+        requestAnimationFrame(fade); 
+    }
+  })();
+}
+    function alerta() {
+        alert("Hello friend")
+    }
+   async function api() {
+        let response = await fetch("http://api.icndb.com/jokes/random")
+        let json =await response.json()
+        section.textContent = json.value.joke
+    }
+    function request (obj){
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", obj.url);
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                resolve(xhr.response);
+            } else {
+                section.style.color="red"
+                reject(xhr.statusText); 
+            }
+        };
+        xhr.onerror = () =>{ 
+            section.style.color="red"
+            reject(xhr.statusText)};
+        xhr.send(obj.body);
+    });
+};
+    </script>
+</body>
+</html>
