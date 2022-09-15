@@ -1,3 +1,14 @@
 body *{
     text-align: center;
 }
+input{
+    float:right;
+    margin-right: 20vh;
+}
+button{
+    margin-left: 20vh;
+}
+#item{
+    display: flex;
+    flex-direction: row-reverse;
+}

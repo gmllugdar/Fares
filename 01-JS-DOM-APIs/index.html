@@ -12,7 +12,12 @@
         Hello World
          
     </section>
-    <button onclick=api()>button</button>
+    
+        <button onclick=api()>button</button>
+    <input type="text" oninput=search(value)>
+
+    
+    <div id="item" ></div>
     <script>
         const section = document.querySelector("#text");
 
@@ -56,6 +61,28 @@
         xhr.send(obj.body);
     });
 };
+    async function search(date) {
+        
+        console.log(date)
+        if(date === " ") date = "all"
+         let result = await fetch(`https://api.github.com/search/repositories?q=?${date}`)
+         result =await result.json()
+            result= result.items
+            console.log(result)
+           
+            var str = '<ul>'
+
+            result.map((x)=> {
+                str += '<li>'+ x.url + '</li>'
+            })
+            
+            str += '</ul>'
+            
+            document.getElementById("item").innerHTML=str;
+
+    }
+        
     </script>
+        
 </body>
 </html>
