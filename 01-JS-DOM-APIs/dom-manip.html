@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body>
+    <div id="before"></div>
+    <script>
+        
+        var beforeDiv = document.getElementById('before')
+        
+        function appendTable(matrix) {
+            // console.log(matrix)
+            var table = document.createElement('table');
+            var tbody = document.createElement('tbody');
+
+            matrix.forEach(row => {
+                var tr = document.createElement('tr')
+                row.forEach(cell => {
+                    var td = document.createElement('td')
+                    var tdContent = document.createTextNode(cell);
+                    td.appendChild(tdContent);
+                    tr.appendChild(td)
+                });
+                tbody.appendChild(tr)
+            });
+            
+            table.appendChild(tbody)
+            
+            document.body.insertBefore(table, beforeDiv)
+        }
+
+        var matrix1 = [
+            ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+            ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+            ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        ]
+
+        /*var matrix2 = [
+            ['x', 'y', 'z'],
+            ['p', 'q', 'r'],
+            ['i', 'j', 'k']
+        ]*/
+
+        appendTable(matrix1);
+        /*appendTable(matrix2);*/
+        
+    </script>
+</body>
+</html>
