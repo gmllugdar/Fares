@@ -39,9 +39,9 @@
         alert("Hello friend")
     }
    async function api() {
-        let response = await fetch("http://api.icndb.com/jokes/random")
-        let json =await response.json()
-        section.textContent = json.value.joke
+        let response = await fetch("http://api.icndb.com/jokes/random");
+        let json =await response.json();
+        section.textContent = json.value.joke;
     }
     function request (obj){
     return new Promise((resolve, reject) => {
