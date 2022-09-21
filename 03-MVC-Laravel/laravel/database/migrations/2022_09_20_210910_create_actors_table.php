@@ -18,6 +18,7 @@ class CreateActorsTable extends Migration
             $table->string('nombre');
             $table->date('fechaNacimiento');
             $table->timestamps();
+            $table->softdeletes();
         });
     }
 

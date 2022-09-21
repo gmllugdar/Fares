@@ -13,6 +13,6 @@ class Pelicula extends Model
 
     public function actor()
     {
-        return $this->belongsTo(Actor::class, 'ActorPrincipalID', 'id');
+        return $this->belongsTo(Actor::class, 'ActorPrincipalID', 'id')->withTrashed();
     }
 }
