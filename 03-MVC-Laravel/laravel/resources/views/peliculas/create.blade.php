@@ -2,7 +2,7 @@
 
 @section('body')
 
-	<form action="{{ route('peliculas.store') }}" method="post">
+	<form action="{{ route('peliculas.store') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<label for="año">año</label>
 		<input name="año" id="año" type="text" placeholder="año">
@@ -16,8 +16,8 @@
 		<label for="sinopsis">sinopsis</label>
 		<input name="sinopsis" id="sinopsis" type="text" placeholder="sinopsis">
 
-		{{-- <label for="imagen">imagen</label>
-		<input name="imagen" id="imagen" type="text" placeholder="imagen"> --}}
+		<label for="imagen">imagen</label>
+		<input name="imagen" id="imagen" type="file" accept="image/png, image/gif, image/jpeg">
 
 		<label for="ActorPrincipalID">ActorPrincipalID</label>
 		<select name="ActorPrincipalID" id="ActorPrincipalID">

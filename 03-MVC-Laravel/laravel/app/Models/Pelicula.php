@@ -11,6 +11,10 @@ class Pelicula extends Model
 
     protected $guarded = [];
 
+    // protected $attributes = [
+    //     'imagen' => 'imagen/default.jpg';
+    // ];
+
     public function actor()
     {
         return $this->belongsTo(Actor::class, 'ActorPrincipalID', 'id')->withTrashed();

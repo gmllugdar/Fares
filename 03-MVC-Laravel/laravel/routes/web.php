@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActorController;
 use App\Http\Controllers\PeliculaController;
+use App\Http\Controllers\PeliculaFavoritoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,3 +32,5 @@ Route::group([
     Route::put('/{actor}', [ActorController::class, 'update'])->name('update');
     Route::delete('/{actor}', [ActorController::class, 'destroy'])->name('destroy');
 });
+
+Route::post('api/favorito', [PeliculaFavoritoController::class, 'set'])->name('api.favorito');

@@ -7,6 +7,7 @@
 	<table class="table">
 		<thead>
 			<tr>
+				<th>fav</th>
 				<th>ID</th>
 				<th>Año</th>
 				<th>Titulo</th>
@@ -20,12 +21,24 @@
 		<tbody>
 			@foreach ($peliculas as $x)
 				<tr>
+					<td>
+						<input
+							type="checkbox"
+							id="pelicula_{{ $x->id }}"
+							data-id="{{ $x->id }}"
+							{{ $x->favorito ? 'checked' : '' }}
+							>
+					</td>
 					<td>{{ $x->id }}</td>
 					<td>{{ $x->año }}</td>
 					<td>{{ $x->titulo }}</td>
 					<td>{{ $x->duración }}</td>
 					<td>{{ $x->sinopsis }}</td>
-					<td>{{ $x->imagen }}</td>
+					<td>
+						@if($x->imagen)
+							<img class="img-thumbnail" src="{{ asset($x->imagen) }}">
+						@endif
+					</td>
 					<td>{{ $x->actor->nombre }}</td>
 					{{-- <td>{{ $x->actor ? $x->actor->nombre : '' }}</td> --}}
 					<td>
@@ -41,4 +54,20 @@
 		</tbody>
 	</table>
 
+<script>
+	$('input[type=checkbox]').on('change', function (event) {
+		// console.log($(this).attr('id'));
+		$.ajax({
+			method: 'post',
+			url: "{{ route('api.favorito') }}",
+			data: {
+				pelicula_id: $(this).attr('data-id'),
+				_token: "{{ csrf_token() }}"
+			},
+			success: function(data){
+				console.log(data)
+			}
+		})
+	})
+</script>
 @endsection

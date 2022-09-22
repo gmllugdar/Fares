@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Actor;
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PeliculaController extends Controller
 {
@@ -24,8 +25,14 @@ class PeliculaController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        Pelicula::create( $request->all() );
+        $datos = $request->all();
+
+        if ($request->has('imagen')) {
+            $imagenRuta = Storage::putFile('imagenes', $request->file('imagen'));
+            $datos = array_merge($request->all(), ['imagen' => $imagenRuta]);
+        }
+
+        Pelicula::create( $datos );
 
         return redirect()->route('peliculas.index');
     }
@@ -40,7 +47,14 @@ class PeliculaController extends Controller
 
     public function update(Request $request, Pelicula $peli)
     {
-        $peli->fill( $request->all() );
+        $datos = $request->all();
+
+        if ($request->has('imagen')) {
+            $imagenRuta = Storage::putFile('imagenes', $request->file('imagen'));
+            $datos = array_merge($request->all(), ['imagen' => $imagenRuta]);
+        }
+
+        $peli->fill( $datos );
         $peli->save();
 
         return redirect()->route('peliculas.index');

@@ -21,6 +21,7 @@ class CreatePeliculasTable extends Migration
             $table->string('sinopsis');
             $table->string('imagen')->nullable();
             $table->foreignId('ActorPrincipalID')->references('id')->on('actors');
+            $table->boolean('favorito')->default(false);
             $table->timestamps();
         });
     }
