@@ -18,7 +18,11 @@ class PeliculaFavoritoController extends Controller
         $pelicula->save();
 
         return [
-            'data' => request()->pelicula_id
+            'data' =>[
+                
+               'id'=> request()->pelicula_id,
+               'msg'=> 'La pelicula fue '.($pelicula->favorito ? '':'des').'marcada como favorita'
+               ]
         ];
     }
 }
