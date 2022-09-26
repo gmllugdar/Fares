@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	<textarea id="text" placeholder="Escribe algo...">
+
+	</textarea>
+	<button id="save">Guardar</button>
+	<button id="clear">Borrar</button>
+
+<script>
+	var txtArea = document.getElementById('text');
+	var btnSave = document.getElementById('save');
+	var btnClear = document.getElementById('clear');
+
+	window.addEventListener('load', (event) => {
+		txtArea.value = localStorage.getItem('text');
+	});
+
+	btnSave.addEventListener("click", function () {
+		localStorage.setItem('text', txtArea.value);
+	});
+
+	btnClear.addEventListener("click", function () {
+		txtArea.value = "";
+	});
+
+</script>
+</body>
+</html>
