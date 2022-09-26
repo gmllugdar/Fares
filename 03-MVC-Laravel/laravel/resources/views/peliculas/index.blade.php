@@ -2,6 +2,9 @@
 
 @section('body')
 
+	<input list="movies" id="search" type="text" class="form-control" placeholder="Buscar pelicula...">
+	<datalist id="movies"></datalist>
+
 	<a href="{{ route('peliculas.create') }}">Nueva pelicula</a>
 
 	<table class="table">
@@ -68,6 +71,28 @@
 				console.log(data)
 			}
 		})
+	})
+</script>
+
+<script>
+	let keyupTimer;
+	$('#search').on('keypress', function (event) {
+		let searchText = $(this);
+        clearTimeout(keyupTimer);
+        keyupTimer = setTimeout(function () {
+			$.get({
+				url: "{{ route('api.search') }}",
+				data: {
+					q: searchText.val(),
+				},
+				success: function(data){
+					console.log(data);
+					let moviesHtml = data.map( x => `<option value="${x.titulo}">` );
+					$('#movies').html(moviesHtml);
+				}
+			})
+        }, 800);
+
 	})
 </script>
 @endsection

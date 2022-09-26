@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActorController;
+use App\Http\Controllers\PeliculaBusquedaController;
 use App\Http\Controllers\PeliculaController;
 use App\Http\Controllers\PeliculaFavoritoController;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,4 @@ Route::group([
 });
 
 Route::post('api/favorito', [PeliculaFavoritoController::class, 'set'])->name('api.favorito');
+Route::get('api/busqueda', [PeliculaBusquedaController::class, 'search'])->name('api.search');
