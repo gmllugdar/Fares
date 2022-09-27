@@ -6,13 +6,14 @@
 	<title>Document</title>
 </head>
 <body>
-
-	<textarea id="text" placeholder="Escribe algo...">
+	<div >
+	<textarea id="text" placeholder="Escribe algo..." ondrop="dropHandler(event);" >
 
 	</textarea>
+	</div>
 	<button id="save">Guardar</button>
 	<button id="clear">Borrar</button>
-
+	
 <script>
 	var txtArea = document.getElementById('text');
 	var btnSave = document.getElementById('save');
@@ -29,6 +30,21 @@
 	btnClear.addEventListener("click", function () {
 		txtArea.value = "";
 	});
+	
+	async function dropHandler(ev) {
+  console.log('Fichero(s) arrastrados');
+
+  // Evitar el comportamiendo por defecto (Evitar que el fichero se abra/ejecute)
+  ev.preventDefault();
+  
+
+	let file = ev.dataTransfer.items[0].getAsFile()
+	file = await file.text()
+	txtArea.value = file
+	
+		
+}
+
 
 </script>
 </body>
